@@ -1,9 +1,10 @@
 package com.ERetail.service;
 
-import com.ERetail.dto.BrandDto.*;
+import com.ERetail.dto.KategoriDto.*;
 import com.ERetail.errorresponse.ErrorResponse;
-import com.ERetail.model.Brand;
-import com.ERetail.repository.BrandRepository;
+import com.ERetail.model.Kategori;
+import com.ERetail.model.Region;
+import com.ERetail.repository.KategoriRepository;
 import lombok.SneakyThrows;
 import lombok.val;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,43 +21,43 @@ import java.util.Optional;
 
 @Service
 @Transactional(rollbackOn = Exception.class)
-public class BrandService {
+public class KategoriService {
     @Autowired
-    private BrandRepository brandRepository;
+    private KategoriRepository kategoriRepository;
 
     @SneakyThrows(Exception.class)
-    public ResponseEntity<Object> createBrand(CreateBrandDto dto){
+    public ResponseEntity<Object> createKategori(CreateKategoriDto dto){
 
         HttpHeaders headers= new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
 
         Map<String,Object> res = new HashMap<>();
 
-        Brand brand = new Brand();
-        brand.setNama_brand(dto.getNama_brand().trim());
+        Kategori kategori = new Kategori();
+        kategori.setNama_kategori(dto.getNama_kategori().trim());
 
-        brandRepository.save(brand);
+        kategoriRepository.save(kategori);
 
         res.put("code", HttpStatus.CREATED.value());
         res.put("message", "success");
-        res.put("data", brand);
+        res.put("data", kategori);
 
         return ResponseEntity.status(HttpStatus.CREATED).headers(headers).body(res);
     }
 
     @SneakyThrows(Exception.class)
-    public ResponseEntity<Object> getBrand(long id) {
+    public ResponseEntity<Object> getKategori(long id) {
 
         Map<String, Object> res = new HashMap<>();
 
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
 
-        Brand brand = brandRepository.findById(id);
+        Kategori kategori = kategoriRepository.findById(id);
 
-        if (Optional.ofNullable(brand).isPresent()) {
+        if (Optional.ofNullable(kategori).isPresent()) {
             res.put("message", "success");
-            res.put("data", brand);
+            res.put("data", kategori);
         } else {
             res.put("message", "failed");
             res.put("data", null);
@@ -67,24 +68,24 @@ public class BrandService {
     }
 
     @SneakyThrows(Exception.class)
-    public ResponseEntity<Object> getBrands() {
+    public ResponseEntity<Object> getKategoris() {
 
         Map<String, Object> res = new HashMap<String, Object>();
 
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
 
-        val brand = brandRepository.findAll();
+        val kategoris = kategoriRepository.findAll();
 
         res.put("code", HttpStatus.OK.value());
         res.put("message", "success");
-        res.put("data", brand);
+        res.put("data", kategoris);
 
         return ResponseEntity.status(HttpStatus.CREATED).headers(headers).body(res);
     }
 
     @SneakyThrows(Exception.class)
-    public ResponseEntity<Object> updateBrand(UpdateBrandDto dto){
+    public ResponseEntity<Object> updateKategori(UpdateKategoriDto dto){
 
         Map<String,Object> res = new HashMap<String, Object>();
 
@@ -92,15 +93,15 @@ public class BrandService {
         headers.setContentType(MediaType.APPLICATION_JSON);
 
 
-        Brand brand = brandRepository.findById(dto.getId()).orElse(null);
-        if(Optional.ofNullable(brand).isPresent()){
+        Kategori kategori = kategoriRepository.findById(dto.getId()).orElse(null);
+        if(Optional.ofNullable(kategori).isPresent()){
 
-            brand.setNama_brand(dto.getNama_brand().trim());
+            kategori.setNama_kategori(dto.getNama_kategori().trim());
 
-            brandRepository.save(brand);
+            kategoriRepository.save(kategori);
 
             res.put("message", "success");
-            res.put("data", brand);
+            res.put("data", kategori);
         }else {
             ErrorResponse err = new ErrorResponse("999","Data Not Found");
             return ResponseEntity.status(HttpStatus.OK).headers(headers).body(err);
@@ -112,21 +113,21 @@ public class BrandService {
     }
 
     @SneakyThrows(Exception.class)
-    public ResponseEntity<Object> deleteBrand(Long id) {
+    public ResponseEntity<Object> deleteKategori(Long id) {
 
         Map<String, Object> res = new HashMap<String, Object>();
 
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
 
-        Brand brand = brandRepository.findById(id).orElse(null);
+        Kategori kategori = kategoriRepository.findById(id).orElse(null);
 
-        if (Optional.ofNullable(brand).isPresent()) {
+        if (Optional.ofNullable(kategori).isPresent()) {
 
-            brandRepository.deleteById(id);
+            kategoriRepository.deleteById(id);
 
             res.put("message", "success");
-            res.put("data", brand);
+            res.put("data", kategori);
 
         } else {
             res.put("message", "failed");

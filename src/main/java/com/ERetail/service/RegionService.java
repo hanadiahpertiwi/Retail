@@ -1,9 +1,9 @@
 package com.ERetail.service;
 
-import com.ERetail.dto.BrandDto.*;
+import com.ERetail.dto.RegionDto.*;
 import com.ERetail.errorresponse.ErrorResponse;
-import com.ERetail.model.Brand;
-import com.ERetail.repository.BrandRepository;
+import com.ERetail.model.Region;
+import com.ERetail.repository.RegionRepository;
 import lombok.SneakyThrows;
 import lombok.val;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,43 +20,43 @@ import java.util.Optional;
 
 @Service
 @Transactional(rollbackOn = Exception.class)
-public class BrandService {
+public class RegionService {
     @Autowired
-    private BrandRepository brandRepository;
+    private RegionRepository regionRepository;
 
     @SneakyThrows(Exception.class)
-    public ResponseEntity<Object> createBrand(CreateBrandDto dto){
+    public ResponseEntity<Object> createRegion(CreateRegionDto dto){
 
         HttpHeaders headers= new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
 
         Map<String,Object> res = new HashMap<>();
 
-        Brand brand = new Brand();
-        brand.setNama_brand(dto.getNama_brand().trim());
+        Region region = new Region();
+        region.setNama_region(dto.getNama_region().trim());
 
-        brandRepository.save(brand);
+        regionRepository.save(region);
 
         res.put("code", HttpStatus.CREATED.value());
         res.put("message", "success");
-        res.put("data", brand);
+        res.put("data", region);
 
         return ResponseEntity.status(HttpStatus.CREATED).headers(headers).body(res);
     }
 
     @SneakyThrows(Exception.class)
-    public ResponseEntity<Object> getBrand(long id) {
+    public ResponseEntity<Object> getRegion(long id) {
 
         Map<String, Object> res = new HashMap<>();
 
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
 
-        Brand brand = brandRepository.findById(id);
+        Region region = regionRepository.findById(id);
 
-        if (Optional.ofNullable(brand).isPresent()) {
+        if (Optional.ofNullable(region).isPresent()) {
             res.put("message", "success");
-            res.put("data", brand);
+            res.put("data", region);
         } else {
             res.put("message", "failed");
             res.put("data", null);
@@ -67,24 +67,24 @@ public class BrandService {
     }
 
     @SneakyThrows(Exception.class)
-    public ResponseEntity<Object> getBrands() {
+    public ResponseEntity<Object> getRegions() {
 
         Map<String, Object> res = new HashMap<String, Object>();
 
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
 
-        val brand = brandRepository.findAll();
+        val region = regionRepository.findAll();
 
         res.put("code", HttpStatus.OK.value());
         res.put("message", "success");
-        res.put("data", brand);
+        res.put("data", region);
 
         return ResponseEntity.status(HttpStatus.CREATED).headers(headers).body(res);
     }
 
     @SneakyThrows(Exception.class)
-    public ResponseEntity<Object> updateBrand(UpdateBrandDto dto){
+    public ResponseEntity<Object> updateRegion(UpdateRegionDto dto){
 
         Map<String,Object> res = new HashMap<String, Object>();
 
@@ -92,15 +92,15 @@ public class BrandService {
         headers.setContentType(MediaType.APPLICATION_JSON);
 
 
-        Brand brand = brandRepository.findById(dto.getId()).orElse(null);
-        if(Optional.ofNullable(brand).isPresent()){
+        Region region = regionRepository.findById(dto.getId()).orElse(null);
+        if(Optional.ofNullable(region).isPresent()){
 
-            brand.setNama_brand(dto.getNama_brand().trim());
+            region.setNama_region(dto.getNama_region().trim());
 
-            brandRepository.save(brand);
+            regionRepository.save(region);
 
             res.put("message", "success");
-            res.put("data", brand);
+            res.put("data", region);
         }else {
             ErrorResponse err = new ErrorResponse("999","Data Not Found");
             return ResponseEntity.status(HttpStatus.OK).headers(headers).body(err);
@@ -112,21 +112,21 @@ public class BrandService {
     }
 
     @SneakyThrows(Exception.class)
-    public ResponseEntity<Object> deleteBrand(Long id) {
+    public ResponseEntity<Object> deleteRegion(Long id) {
 
         Map<String, Object> res = new HashMap<String, Object>();
 
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
 
-        Brand brand = brandRepository.findById(id).orElse(null);
+        Region region = regionRepository.findById(id).orElse(null);
 
-        if (Optional.ofNullable(brand).isPresent()) {
+        if (Optional.ofNullable(region).isPresent()) {
 
-            brandRepository.deleteById(id);
+            regionRepository.deleteById(id);
 
             res.put("message", "success");
-            res.put("data", brand);
+            res.put("data", region);
 
         } else {
             res.put("message", "failed");

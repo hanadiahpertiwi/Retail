@@ -40,6 +40,15 @@ public class BrandController {
     }
 
     @SneakyThrows(Exception.class)
+    @GetMapping(path = "/brands", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<Object> getBrands() {
+
+        log.info("GET http://localhost:8081/api/v1/brands is called...");
+
+        return brandService.getBrands();
+    }
+
+    @SneakyThrows(Exception.class)
     @DeleteMapping(path = "/brand/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Object> deleteBrand(@PathVariable(name = "id") Long id) {
 
