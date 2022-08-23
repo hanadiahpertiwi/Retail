@@ -18,7 +18,7 @@ public class BrandDto {
     @NoArgsConstructor
     public static class UpdateBrandDto {
 
-        private Long id;
+        private Long id_brand;
         private String nama_brand;
     }
 }

@@ -1,9 +1,9 @@
 package com.ERetail.service;
 
-import com.ERetail.dto.BrandDto.*;
+import com.ERetail.dto.SupplierDto.*;
 import com.ERetail.errorresponse.ErrorResponse;
-import com.ERetail.model.Brand;
-import com.ERetail.repository.BrandRepository;
+import com.ERetail.model.Supplier;
+import com.ERetail.repository.SupplierRepository;
 import lombok.SneakyThrows;
 import lombok.val;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,43 +20,47 @@ import java.util.Optional;
 
 @Service
 @Transactional(rollbackOn = Exception.class)
-public class BrandService {
+public class SupplierService {
     @Autowired
-    private BrandRepository brandRepository;
+    private SupplierRepository supplierRepository;
 
     @SneakyThrows(Exception.class)
-    public ResponseEntity<Object> createBrand(CreateBrandDto dto){
+    public ResponseEntity<Object> createSupplier(CreateSupplierDto dto){
 
         HttpHeaders headers= new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
 
         Map<String,Object> res = new HashMap<>();
 
-        Brand brand = new Brand();
-        brand.setNama_brand(dto.getNama_brand().trim());
+        Supplier supplier = new Supplier();
+        supplier.setNama_supplier(dto.getNama_supplier().trim());
+        supplier.setEmail(dto.getEmail().trim());
+        supplier.setNo_telp(dto.getNo_telp().trim());
+        supplier.setAlamat_supplier(dto.getAlamat_supplier().trim());
+        supplier.setId_region(dto.getId_region());
 
-        brandRepository.save(brand);
+        supplierRepository.save(supplier);
 
         res.put("code", HttpStatus.CREATED.value());
         res.put("message", "success");
-        res.put("data", brand);
+        res.put("data", supplier);
 
         return ResponseEntity.status(HttpStatus.CREATED).headers(headers).body(res);
     }
 
     @SneakyThrows(Exception.class)
-    public ResponseEntity<Object> getBrand(Long id) {
+    public ResponseEntity<Object> getSupplier(Long id) {
 
         Map<String, Object> res = new HashMap<>();
 
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
 
-        val brand = brandRepository.findById(id);
+        val supplier = supplierRepository.findById(id);
 
-        if (Optional.ofNullable(brand).isPresent()) {
+        if (Optional.ofNullable(supplier).isPresent()) {
             res.put("message", "success");
-            res.put("data", brand);
+            res.put("data", supplier);
         } else {
             res.put("message", "failed");
             res.put("data", null);
@@ -67,24 +71,24 @@ public class BrandService {
     }
 
     @SneakyThrows(Exception.class)
-    public ResponseEntity<Object> getBrands() {
+    public ResponseEntity<Object> getSuppliers() {
 
         Map<String, Object> res = new HashMap<String, Object>();
 
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
 
-        val brand = brandRepository.findAll();
+        val supplier = supplierRepository.findAll();
 
         res.put("code", HttpStatus.OK.value());
         res.put("message", "success");
-        res.put("data", brand);
+        res.put("data", supplier);
 
         return ResponseEntity.status(HttpStatus.CREATED).headers(headers).body(res);
     }
 
     @SneakyThrows(Exception.class)
-    public ResponseEntity<Object> updateBrand(UpdateBrandDto dto){
+    public ResponseEntity<Object> updateSuplier(UpdateSupplierDto dto){
 
         Map<String,Object> res = new HashMap<String, Object>();
 
@@ -92,15 +96,19 @@ public class BrandService {
         headers.setContentType(MediaType.APPLICATION_JSON);
 
 
-        Brand brand = brandRepository.findById(dto.getId_brand()).orElse(null);
-        if(Optional.ofNullable(brand).isPresent()){
+        Supplier supplier = supplierRepository.findById(dto.getId_supplier()).orElse(null);
+        if(Optional.ofNullable(supplier).isPresent()){
 
-            brand.setNama_brand(dto.getNama_brand().trim());
+            supplier.setNama_supplier(dto.getNama_supplier().trim());
+            supplier.setEmail(dto.getEmail().trim());
+            supplier.setNo_telp(dto.getNo_telp().trim());
+            supplier.setAlamat_supplier(dto.getAlamat_supplier().trim());
+            supplier.setId_region(dto.getId_region());
 
-            brandRepository.save(brand);
+            supplierRepository.save(supplier);
 
             res.put("message", "success");
-            res.put("data", brand);
+            res.put("data", supplier);
         }else {
             ErrorResponse err = new ErrorResponse("999","Data Not Found");
             return ResponseEntity.status(HttpStatus.OK).headers(headers).body(err);
@@ -112,21 +120,21 @@ public class BrandService {
     }
 
     @SneakyThrows(Exception.class)
-    public ResponseEntity<Object> deleteBrand(Long id) {
+    public ResponseEntity<Object> deleteSupplier(Long id) {
 
         Map<String, Object> res = new HashMap<String, Object>();
 
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
 
-        val brand = brandRepository.findById(id).orElse(null);
+        val supplier = supplierRepository.findById(id).orElse(null);
 
-        if (Optional.ofNullable(brand).isPresent()) {
+        if (Optional.ofNullable(supplier).isPresent()) {
 
-            brandRepository.deleteById(id);
+            supplierRepository.deleteById(id);
 
             res.put("message", "success");
-            res.put("data", brand);
+            res.put("data", supplier);
 
         } else {
             res.put("message", "failed");

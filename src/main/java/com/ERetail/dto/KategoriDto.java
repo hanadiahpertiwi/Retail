@@ -18,7 +18,7 @@ public class KategoriDto {
     @NoArgsConstructor
     public static class UpdateKategoriDto {
 
-        private Long id;
+        private Long id_kategori;
         private String nama_kategori;
     }
 }

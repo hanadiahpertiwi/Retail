@@ -21,8 +21,8 @@ import java.time.LocalDate;
 public class Pelanggan implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id", nullable = false, insertable = false, unique = true)
-    private long id;
+    @Column(name = "id_pelanggan", nullable = false, insertable = false, unique = true)
+    private Long id_pelanggan;
 
     @NotBlank
     @Column(name = "nama_pelanggan", nullable = false, length = 255)

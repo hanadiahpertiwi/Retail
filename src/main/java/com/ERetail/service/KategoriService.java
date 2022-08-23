@@ -93,7 +93,7 @@ public class KategoriService {
         headers.setContentType(MediaType.APPLICATION_JSON);
 
 
-        Kategori kategori = kategoriRepository.findById(dto.getId()).orElse(null);
+        Kategori kategori = kategoriRepository.findById(dto.getId_kategori()).orElse(null);
         if(Optional.ofNullable(kategori).isPresent()){
 
             kategori.setNama_kategori(dto.getNama_kategori().trim());

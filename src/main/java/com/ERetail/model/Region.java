@@ -20,7 +20,7 @@ public class Region implements Serializable{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_region", nullable = false, insertable = false, unique = true)
-    private long id_region;
+    private Long id_region;
 
     @NotBlank
     @Column(name = "nama_region", nullable = false, length = 255)

@@ -22,7 +22,7 @@ public class Supplier implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_supplier", nullable = false, insertable = false, unique = true)
-    private long id_supplier;
+    private Long id_supplier;
 
     @NotBlank
     @Column(name = "nama_supplier", nullable = false, length = 255)

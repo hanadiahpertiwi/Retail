@@ -34,7 +34,7 @@ public class PelangganController {
     }
 
     @SneakyThrows(Exception.class)
-    @GetMapping(path = "/pelanggan", produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(path = "/pelanggan/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Object> getPelanggan(@PathVariable(name = "id") Long id) {
         log.info("GET http://localhost:8081/api/v1/pelanggan{} is called...", id);
         return pelangganService.getPelanggan(id);

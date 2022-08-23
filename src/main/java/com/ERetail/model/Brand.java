@@ -19,8 +19,8 @@ import java.io.Serializable;
 public class Brand implements Serializable{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id", nullable = false, insertable = false, unique = true)
-    private long id;
+    @Column(name = "id_brand", nullable = false, insertable = false, unique = true)
+    private Long id_brand;
 
     @NotBlank
     @Column(name = "nama_brand", nullable = false, length = 255)

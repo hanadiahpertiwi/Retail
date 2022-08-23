@@ -4,7 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-public class Supplier {
+public class SupplierDto {
 
 	@Data
 	@AllArgsConstructor
@@ -28,6 +28,6 @@ public class Supplier {
 		private String email;
 		private String no_telp;
 		private String alamat_supplier;
-		private long id_region;
+		private Long id_region;
 	}
 }

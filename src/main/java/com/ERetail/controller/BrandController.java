@@ -2,7 +2,6 @@ package com.ERetail.controller;
 
 import com.ERetail.dto.BrandDto.*;
 import com.ERetail.service.BrandService;
-import com.ERetail.service.PelangganService;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,7 +32,7 @@ public class BrandController {
     }
 
     @SneakyThrows(Exception.class)
-    @GetMapping(path = "/brand", produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(path = "/brand/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Object> getBrand(@PathVariable(name = "id") Long id) {
         log.info("GET http://localhost:8081/api/v1/brand{} is called...", id);
         return brandService.getBrand(id);

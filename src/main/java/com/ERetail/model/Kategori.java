@@ -19,8 +19,8 @@ import java.io.Serializable;
 public class Kategori implements Serializable{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id", nullable = false, insertable = false, unique = true)
-    private long id;
+    @Column(name = "id_kategori", nullable = false, insertable = false, unique = true)
+    private Long id_kategori;
 
     @NotBlank
     @Column(name = "nama_kategori", nullable = false, length = 255)
