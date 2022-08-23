@@ -15,6 +15,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.time.LocalDate;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
@@ -36,14 +37,19 @@ public class PelangganService {
         Map<String,Object> res = new HashMap<>();
 
         Pelanggan pelanggan = new Pelanggan();
+        pelanggan.setUsername(dto.getUsername().trim());
         pelanggan.setNama_pelanggan(dto.getNama_pelanggan().trim());
+        pelanggan.setUmur(dto.getUmur());
         pelanggan.setTtl(dto.getTtl());
         pelanggan.setNo_hp(dto.getNo_hp());
-        pelanggan.setUmur(dto.getUmur());
-
+        pelanggan.setJenis_kelamin(dto.getJenis_kelamin().trim());
+        pelanggan.setAlamat(dto.getAlamat().trim());
+        pelanggan.setNo_rekening(dto.getNo_rekening());
+        pelanggan.setEmail(dto.getEmail().trim());
+        pelanggan.setSaldo(dto.getSaldo());
         pelangganRepository.save(pelanggan);
 
-        return ResponseEntity.status(HttpStatus.CREATED).headers(headers).build();
+        return ResponseEntity.status(HttpStatus.CREATED).headers(headers).body(res);
     }
 
     @SneakyThrows(Exception.class)
@@ -54,13 +60,21 @@ public class PelangganService {
 
         Map<String,Object> res = new HashMap<String, Object>();
 
-        Pelanggan pelanggan = pelangganRepository.findById(dto.getId());
+        Pelanggan pelanggan = pelangganRepository.findById(dto.getId()).orElse(null);
         if(Optional.ofNullable(pelanggan).isPresent()){
 
+            pelanggan.setUsername(dto.getUsername().trim());
             pelanggan.setNama_pelanggan(dto.getNama_pelanggan().trim());
             pelanggan.setUmur(dto.getUmur());
+            pelanggan.setTtl(dto.getTtl());
             pelanggan.setNo_hp(dto.getNo_hp());
+            pelanggan.setJenis_kelamin(dto.getJenis_kelamin().trim());
+            pelanggan.setAlamat(dto.getAlamat().trim());
+            pelanggan.setNo_rekening(dto.getNo_rekening());
+            pelanggan.setEmail(dto.getEmail().trim());
+            pelanggan.setSaldo(dto.getSaldo());
             pelangganRepository.save(pelanggan);
+
         }else
         {
             ErrorResponse err = new ErrorResponse("999","Data Not Found");
@@ -71,15 +85,15 @@ public class PelangganService {
     }
 
     @SneakyThrows(Exception.class)
-    public ResponseEntity<Object> getPelanggan (long id) {
+    public ResponseEntity<Object> getPelanggan (Long id) {
 
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
         Map<String, Object> res = new HashMap<>();
-        val std = pelangganRepository.findById(id);
-        if (Optional.ofNullable(std).isPresent()) {
+        val pelanggan = pelangganRepository.findById(id);
+        if (Optional.ofNullable(pelanggan).isPresent()) {
             res.put("message", "success");
-            res.put("data", std);
+            res.put("data", pelanggan);
         } else {
             res.put("message", "failed");
             res.put("data", null);
@@ -90,7 +104,25 @@ public class PelangganService {
     }
 
     @SneakyThrows(Exception.class)
-    public ResponseEntity<Object> delete(long id) {
+    public ResponseEntity<Object> getPelanggans() {
+
+        Map<String, Object> res = new HashMap<String, Object>();
+
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_JSON);
+
+        val pelanggans = pelangganRepository.findAll();
+
+        res.put("code", HttpStatus.OK.value());
+        res.put("message", "success");
+        res.put("data", pelanggans);
+
+        return ResponseEntity.status(HttpStatus.CREATED).headers(headers).body(res);
+    }
+
+
+    @SneakyThrows(Exception.class)
+    public ResponseEntity<Object> delete(Long id) {
 
         Map<String, Object> res = new HashMap<String, Object>();
 
@@ -115,4 +147,6 @@ public class PelangganService {
 
         return ResponseEntity.status(HttpStatus.OK).headers(headers).body(res);
     }
+
+
 }

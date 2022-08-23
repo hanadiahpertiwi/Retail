@@ -22,18 +22,35 @@ public class Pelanggan implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false, insertable = false, unique = true)
-    private long id;
+    private Long id;
 
-    @NotBlank
+    @Column(name = "username", nullable = false, length = 255)
+    private String username;
+
     @Column(name = "nama_pelanggan", nullable = false, length = 255)
     private String nama_pelanggan;
 
-    @JoinColumn (name = "umur", nullable = false)
+    @Column (name = "umur", nullable = false)
     private Integer umur;
 
-    @JoinColumn (name = "ttl", nullable = false, columnDefinition = "DATE")
+    @Column (name = "ttl", nullable = false, columnDefinition = "DATE")
     private LocalDate ttl;
 
-    @JoinColumn(name = "no_hp", nullable = false)
+    @Column (name = "jenis_kelamin", nullable = false, length = 255)
+    private String jenis_kelamin;
+
+    @Column(name = "alamat", nullable = false, length = 255)
+    private String alamat;
+
+    @Column(name = "no_hp", nullable = false)
     private Integer no_hp;
+
+    @Column(name = "no_rekening", nullable = false)
+    private Long no_rekening;
+
+    @Column(name = "email", nullable = false, length = 255)
+    private String email;
+
+    @Column(name = "saldo", nullable = false)
+    private Long saldo;
 }

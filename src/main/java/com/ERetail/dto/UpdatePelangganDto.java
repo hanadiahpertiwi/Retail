@@ -11,9 +11,15 @@ import java.time.LocalDate;
 @NoArgsConstructor
 
 public class UpdatePelangganDto {
-    private long id;
+    private Long id;
+    private String username;
     private String nama_pelanggan;
     private Integer umur;
     private LocalDate ttl;
+    private String jenis_kelamin;
+    private String alamat;
     private Integer no_hp;
+    private Long no_rekening;
+    private String email;
+    private Long saldo;
 }
