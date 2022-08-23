@@ -33,7 +33,7 @@ public class RegionService {
         Map<String,Object> res = new HashMap<>();
 
         Region region = new Region();
-        region.setNama_region(dto.getNama_region().trim());
+        region.setNamaRegion(dto.getNamaRegion().trim());
 
         regionRepository.save(region);
 
@@ -45,14 +45,14 @@ public class RegionService {
     }
 
     @SneakyThrows(Exception.class)
-    public ResponseEntity<Object> getRegion(long id) {
+    public ResponseEntity<Object> getRegion(String namaRegion) {
 
         Map<String, Object> res = new HashMap<>();
 
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
 
-        Region region = regionRepository.findById(id);
+        Region region = regionRepository.findByNamaRegion(namaRegion);
 
         if (Optional.ofNullable(region).isPresent()) {
             res.put("message", "success");
@@ -92,10 +92,10 @@ public class RegionService {
         headers.setContentType(MediaType.APPLICATION_JSON);
 
 
-        Region region = regionRepository.findById(dto.getId()).orElse(null);
+        Region region = regionRepository.findById(dto.getIdRegion()).orElse(null);
         if(Optional.ofNullable(region).isPresent()){
 
-            region.setNama_region(dto.getNama_region().trim());
+            region.setNamaRegion(dto.getNamaRegion().trim());
 
             regionRepository.save(region);
 

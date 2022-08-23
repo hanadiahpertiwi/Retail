@@ -32,10 +32,10 @@ public class RegionController {
     }
 
     @SneakyThrows(Exception.class)
-    @GetMapping(path = "/region", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Object> getRegion(@PathVariable(name = "id") Long id) {
-        log.info("GET http://localhost:8081/api/v1/region{} is called...", id);
-        return regionService.getRegion(id);
+    @GetMapping(path = "/region/{namaRegion}", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<Object> getRegion(@PathVariable(name = "namaRegion") String namaRegion) {
+        log.info("GET http://localhost:8081/api/v1/region{} is called...", namaRegion);
+        return regionService.getRegion(namaRegion);
     }
 
     @SneakyThrows(Exception.class)

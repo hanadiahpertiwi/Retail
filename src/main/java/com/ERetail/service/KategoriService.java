@@ -34,7 +34,7 @@ public class KategoriService {
         Map<String,Object> res = new HashMap<>();
 
         Kategori kategori = new Kategori();
-        kategori.setNama_kategori(dto.getNama_kategori().trim());
+        kategori.setNamaKategori(dto.getNamaKategori().trim());
 
         kategoriRepository.save(kategori);
 
@@ -46,18 +46,18 @@ public class KategoriService {
     }
 
     @SneakyThrows(Exception.class)
-    public ResponseEntity<Object> getKategori(long id) {
+    public ResponseEntity<Object> getKategori(String namaKategori) {
 
         Map<String, Object> res = new HashMap<>();
 
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
 
-        Kategori kategori = kategoriRepository.findById(id);
+        val kat = kategoriRepository.findByNamaKategori(namaKategori);
 
-        if (Optional.ofNullable(kategori).isPresent()) {
+        if (Optional.ofNullable(namaKategori).isPresent()) {
             res.put("message", "success");
-            res.put("data", kategori);
+            res.put("data", kat);
         } else {
             res.put("message", "failed");
             res.put("data", null);
@@ -93,10 +93,10 @@ public class KategoriService {
         headers.setContentType(MediaType.APPLICATION_JSON);
 
 
-        Kategori kategori = kategoriRepository.findById(dto.getId_kategori()).orElse(null);
+        Kategori kategori = kategoriRepository.findById(dto.getIdKategori()).orElse(null);
         if(Optional.ofNullable(kategori).isPresent()){
 
-            kategori.setNama_kategori(dto.getNama_kategori().trim());
+            kategori.setNamaKategori(dto.getNamaKategori().trim());
 
             kategoriRepository.save(kategori);
 

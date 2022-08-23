@@ -32,10 +32,10 @@ public class KategoriController {
     }
 
     @SneakyThrows(Exception.class)
-    @GetMapping(path = "/kategori/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Object> getKategori(@PathVariable(name = "id") Long id) {
-        log.info("GET http://localhost:8081/api/v1/kategori{} is called...", id);
-        return kategoriService.getKategori(id);
+    @GetMapping(path = "/kategori/{namaKategori}", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<Object> getKategori(@PathVariable(name = "namaKategori") String namaKategori) {
+        log.info("GET http://localhost:8081/api/v1/kategori{} is called...", namaKategori);
+        return kategoriService.getKategori(namaKategori);
     }
 
     @SneakyThrows(Exception.class)

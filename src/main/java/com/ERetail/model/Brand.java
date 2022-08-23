@@ -19,10 +19,10 @@ import java.io.Serializable;
 public class Brand implements Serializable{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_brand", nullable = false, insertable = false, unique = true)
-    private Long id_brand;
+    @Column(name = "idBrand", nullable = false, insertable = false, unique = true)
+    private Long idBrand;
 
     @NotBlank
-    @Column(name = "nama_brand", nullable = false, length = 255)
-    private String nama_brand;
+    @Column(name = "namaBrand", nullable = false, length = 255)
+    private String namaBrand;
 }

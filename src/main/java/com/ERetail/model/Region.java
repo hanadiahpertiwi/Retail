@@ -19,10 +19,10 @@ import java.io.Serializable;
 public class Region implements Serializable{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_region", nullable = false, insertable = false, unique = true)
-    private Long id_region;
+    @Column(name = "idRegion", nullable = false, insertable = false, unique = true)
+    private Long idRegion;
 
     @NotBlank
-    @Column(name = "nama_region", nullable = false, length = 255)
-    private String nama_region;
+    @Column(name = "namaRegion", nullable = false, length = 255)
+    private String namaRegion;
 }

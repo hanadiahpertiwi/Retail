@@ -11,11 +11,11 @@ public class ProdukDto {
 	@NoArgsConstructor
 	public static class CreateProdukDto {
 
-		private Long id_supplier;
-		private Long id_brand;
-		private Long id_kategori;
-		private String nama_produk;
-		private String deskripsi_produk;
+		private Long idSupplier;
+		private Long idBrand;
+		private Long idKategori;
+		private String namaProduk;
+		private String deskripsiProduk;
 		private Integer harga;
 		private Integer stok;
 	}
@@ -25,12 +25,12 @@ public class ProdukDto {
 	@NoArgsConstructor
 	public static class UpdateProdukDto {
 
-		private Long id_produk;
-		private Long id_supplier;
-		private Long id_brand;
-		private Long id_kategori;
-		private String nama_produk;
-		private String deskripsi_produk;
+		private Long idProduk;
+		private Long idSupplier;
+		private Long idBrand;
+		private Long idKategori;
+		private String namaProduk;
+		private String deskripsiProduk;
 		private Integer harga;
 		private Integer stok;
 	}

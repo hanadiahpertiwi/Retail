@@ -21,22 +21,22 @@ import java.time.LocalDate;
 public class Supplier implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_supplier", nullable = false, insertable = false, unique = true)
-    private Long id_supplier;
+    @Column(name = "idSupplier", nullable = false, insertable = false, unique = true)
+    private Long idSupplier;
 
     @NotBlank
-    @Column(name = "nama_supplier", nullable = false, length = 255)
-    private String nama_supplier;
+    @Column(name = "namaSupplier", nullable = false, length = 255)
+    private String namaSupplier;
 
     @Column (name = "email", nullable = false, length = 255)
     private String email;
 
-    @Column (name = "no_telp", nullable = false, length = 255)
-    private String no_telp;
+    @Column (name = "noTelp", nullable = false, length = 255)
+    private String noTelp;
 
-    @Column(name = "alamat_supplier", nullable = false, length = 255)
-    private String alamat_supplier;
+    @Column(name = "alamatSupplier", nullable = false, length = 255)
+    private String alamatSupplier;
 
-    @Column(name = "id_region", nullable = false)
-    private Long id_region;
+    @Column(name = "idRegion", nullable = false)
+    private Long idRegion;
 }

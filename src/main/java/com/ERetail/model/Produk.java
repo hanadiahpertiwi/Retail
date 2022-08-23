@@ -19,24 +19,24 @@ import java.io.Serializable;
 public class Produk implements Serializable{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_produk", nullable = false, insertable = false, unique = true)
-    private Long id_produk;
+    @Column(name = "idProduk", nullable = false, insertable = false, unique = true)
+    private Long idProduk;
 
-    @Column (name = "id_supplier", nullable = false)
-    private Long id_supplier;
+    @Column (name = "idSupplier", nullable = false)
+    private Long idSupplier;
 
-    @Column (name = "id_brand", nullable = false)
-    private Long id_brand;
+    @Column (name = "idBrand", nullable = false)
+    private Long idBrand;
 
-    @Column(name = "id_kategori", nullable = false)
-    private Long id_kategori;
+    @Column(name = "idKategori", nullable = false)
+    private Long idKategori;
 
     @NotBlank
-    @Column(name = "nama_produk", nullable = false, length = 255)
-    private String nama_produk;
+    @Column(name = "namaProduk", nullable = false, length = 255)
+    private String namaProduk;
 
-    @Column(name = "deskripsi_produk", nullable = false, length = 255)
-    private String deskripsi_produk;
+    @Column(name = "deskripsiProduk", nullable = false, length = 255)
+    private String deskripsiProduk;
 
     @Column(name = "harga", nullable = false)
     private Integer harga;

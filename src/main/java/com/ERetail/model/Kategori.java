@@ -7,6 +7,7 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
 import java.io.Serializable;
 
 @Entity(name = "Kategori")
@@ -19,10 +20,10 @@ import java.io.Serializable;
 public class Kategori implements Serializable{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_kategori", nullable = false, insertable = false, unique = true)
-    private Long id_kategori;
+    @Column(name = "idKategori", nullable = false, insertable = false, unique = true)
+    private Long idKategori;
 
-    @NotBlank
-    @Column(name = "nama_kategori", nullable = false, length = 255)
-    private String nama_kategori;
+    @NotEmpty
+    @Column(name = "namaKategori", nullable = false, length = 255)
+    private String namaKategori;
 }

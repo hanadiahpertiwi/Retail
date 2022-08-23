@@ -32,10 +32,10 @@ public class SupplierController {
     }
 
     @SneakyThrows(Exception.class)
-    @GetMapping(path = "/supplier/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Object> getSupplier(@PathVariable(name = "id") Long id) {
-        log.info("GET http://localhost:8081/api/v1/supplier{} is called...", id);
-        return supplierService.getSupplier(id);
+    @GetMapping(path = "/supplier/{namaSupplier}", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<Object> getSupplier(@PathVariable(name = "namaSupplier") String namaSupplier) {
+        log.info("GET http://localhost:8081/api/v1/supplier{} is called...", namaSupplier);
+        return supplierService.getSupplier(namaSupplier);
     }
 
     @SneakyThrows(Exception.class)

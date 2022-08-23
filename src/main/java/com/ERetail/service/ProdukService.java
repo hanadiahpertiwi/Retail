@@ -3,7 +3,10 @@ package com.ERetail.service;
 import com.ERetail.dto.ProdukDto.*;
 import com.ERetail.errorresponse.ErrorResponse;
 import com.ERetail.model.Produk;
+import com.ERetail.repository.BrandRepository;
+import com.ERetail.repository.KategoriRepository;
 import com.ERetail.repository.ProdukRepository;
+import com.ERetail.repository.RegionRepository;
 import lombok.SneakyThrows;
 import lombok.val;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,7 +26,7 @@ import java.util.Optional;
 public class ProdukService {
     @Autowired
     private ProdukRepository produkRepository;
-
+    
     @SneakyThrows(Exception.class)
     public ResponseEntity<Object> createProduk(CreateProdukDto dto){
 
@@ -33,11 +36,11 @@ public class ProdukService {
         Map<String,Object> res = new HashMap<>();
 
         Produk produk = new Produk();
-        produk.setId_supplier(dto.getId_supplier());
-        produk.setId_brand(dto.getId_brand());
-        produk.setId_kategori(dto.getId_kategori());
-        produk.setNama_produk(dto.getNama_produk().trim());
-        produk.setDeskripsi_produk(dto.getDeskripsi_produk());
+        produk.setIdSupplier(dto.getIdSupplier());
+        produk.setIdBrand(dto.getIdBrand());
+        produk.setIdKategori(dto.getIdKategori());
+        produk.setNamaProduk(dto.getNamaProduk().trim());
+        produk.setDeskripsiProduk(dto.getDeskripsiProduk());
         produk.setHarga(dto.getHarga());
         produk.setStok(dto.getStok());
 
@@ -98,14 +101,14 @@ public class ProdukService {
         headers.setContentType(MediaType.APPLICATION_JSON);
 
 
-        val produk = produkRepository.findById(dto.getId_produk()).orElse(null);
+        val produk = produkRepository.findById(dto.getIdProduk()).orElse(null);
         if(Optional.ofNullable(produk).isPresent()){
 
-            produk.setId_supplier(dto.getId_supplier());
-            produk.setId_brand(dto.getId_brand());
-            produk.setId_kategori(dto.getId_kategori());
-            produk.setNama_produk(dto.getNama_produk().trim());
-            produk.setDeskripsi_produk(dto.getDeskripsi_produk());
+            produk.setIdSupplier(dto.getIdSupplier());
+            produk.setIdBrand(dto.getIdBrand());
+            produk.setIdKategori(dto.getIdKategori());
+            produk.setNamaProduk(dto.getNamaProduk().trim());
+            produk.setDeskripsiProduk(dto.getDeskripsiProduk());
             produk.setHarga(dto.getHarga());
             produk.setStok(dto.getStok());
 

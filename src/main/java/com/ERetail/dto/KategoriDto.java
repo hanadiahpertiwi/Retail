@@ -10,7 +10,7 @@ public class KategoriDto {
     @NoArgsConstructor
     public static class CreateKategoriDto {
 
-        private String nama_kategori;
+        private String namaKategori;
     }
 
     @Data
@@ -18,7 +18,7 @@ public class KategoriDto {
     @NoArgsConstructor
     public static class UpdateKategoriDto {
 
-        private Long id_kategori;
-        private String nama_kategori;
+        private Long idKategori;
+        private String namaKategori;
     }
 }

@@ -33,11 +33,11 @@ public class SupplierService {
         Map<String,Object> res = new HashMap<>();
 
         Supplier supplier = new Supplier();
-        supplier.setNama_supplier(dto.getNama_supplier().trim());
+        supplier.setNamaSupplier(dto.getNamaSupplier().trim());
         supplier.setEmail(dto.getEmail().trim());
-        supplier.setNo_telp(dto.getNo_telp().trim());
-        supplier.setAlamat_supplier(dto.getAlamat_supplier().trim());
-        supplier.setId_region(dto.getId_region());
+        supplier.setNoTelp(dto.getNoTelp().trim());
+        supplier.setAlamatSupplier(dto.getAlamatSupplier().trim());
+        supplier.setIdRegion(dto.getIdRegion());
 
         supplierRepository.save(supplier);
 
@@ -49,14 +49,14 @@ public class SupplierService {
     }
 
     @SneakyThrows(Exception.class)
-    public ResponseEntity<Object> getSupplier(Long id) {
+    public ResponseEntity<Object> getSupplier(String namaSupplier) {
 
         Map<String, Object> res = new HashMap<>();
 
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
 
-        val supplier = supplierRepository.findById(id);
+        val supplier = supplierRepository.findByNamaSupplier(namaSupplier);
 
         if (Optional.ofNullable(supplier).isPresent()) {
             res.put("message", "success");
@@ -96,14 +96,14 @@ public class SupplierService {
         headers.setContentType(MediaType.APPLICATION_JSON);
 
 
-        Supplier supplier = supplierRepository.findById(dto.getId_supplier()).orElse(null);
+        Supplier supplier = supplierRepository.findById(dto.getIdSupplier()).orElse(null);
         if(Optional.ofNullable(supplier).isPresent()){
 
-            supplier.setNama_supplier(dto.getNama_supplier().trim());
+            supplier.setNamaSupplier(dto.getNamaSupplier().trim());
             supplier.setEmail(dto.getEmail().trim());
-            supplier.setNo_telp(dto.getNo_telp().trim());
-            supplier.setAlamat_supplier(dto.getAlamat_supplier().trim());
-            supplier.setId_region(dto.getId_region());
+            supplier.setNoTelp(dto.getNoTelp().trim());
+            supplier.setAlamatSupplier(dto.getAlamatSupplier().trim());
+            supplier.setIdRegion(dto.getIdRegion());
 
             supplierRepository.save(supplier);
 

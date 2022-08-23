@@ -33,7 +33,7 @@ public class BrandService {
         Map<String,Object> res = new HashMap<>();
 
         Brand brand = new Brand();
-        brand.setNama_brand(dto.getNama_brand().trim());
+        brand.setNamaBrand(dto.getNamaBrand().trim());
 
         brandRepository.save(brand);
 
@@ -45,14 +45,14 @@ public class BrandService {
     }
 
     @SneakyThrows(Exception.class)
-    public ResponseEntity<Object> getBrand(Long id) {
+    public ResponseEntity<Object> getBrand(String namaBrand) {
 
         Map<String, Object> res = new HashMap<>();
 
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
 
-        val brand = brandRepository.findById(id);
+        val brand = brandRepository.findByNamaBrand(namaBrand);
 
         if (Optional.ofNullable(brand).isPresent()) {
             res.put("message", "success");
@@ -92,10 +92,10 @@ public class BrandService {
         headers.setContentType(MediaType.APPLICATION_JSON);
 
 
-        Brand brand = brandRepository.findById(dto.getId_brand()).orElse(null);
+        Brand brand = brandRepository.findById(dto.getIdBrand()).orElse(null);
         if(Optional.ofNullable(brand).isPresent()){
 
-            brand.setNama_brand(dto.getNama_brand().trim());
+            brand.setNamaBrand(dto.getNamaBrand().trim());
 
             brandRepository.save(brand);
 

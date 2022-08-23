@@ -11,11 +11,11 @@ public class SupplierDto {
 	@NoArgsConstructor
 	public static class CreateSupplierDto {
 
-		private String nama_supplier;
+		private String namaSupplier;
 		private String email;
-		private String no_telp;
-		private String alamat_supplier;
-		private long id_region;
+		private String noTelp;
+		private String alamatSupplier;
+		private long idRegion;
 	}
 
 	@Data
@@ -23,11 +23,11 @@ public class SupplierDto {
 	@NoArgsConstructor
 	public static class UpdateSupplierDto {
 
-		private Long id_supplier;
-		private String nama_supplier;
+		private Long idSupplier;
+		private String namaSupplier;
 		private String email;
-		private String no_telp;
-		private String alamat_supplier;
-		private Long id_region;
+		private String noTelp;
+		private String alamatSupplier;
+		private Long idRegion;
 	}
 }

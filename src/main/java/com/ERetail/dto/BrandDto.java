@@ -10,7 +10,7 @@ public class BrandDto {
     @NoArgsConstructor
     public static class CreateBrandDto {
 
-        private String nama_brand;
+        private String namaBrand;
     }
 
     @Data
@@ -18,7 +18,7 @@ public class BrandDto {
     @NoArgsConstructor
     public static class UpdateBrandDto {
 
-        private Long id_brand;
-        private String nama_brand;
+        private Long idBrand;
+        private String namaBrand;
     }
 }

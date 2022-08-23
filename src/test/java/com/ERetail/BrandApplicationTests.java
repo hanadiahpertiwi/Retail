@@ -24,7 +24,7 @@ class BrandApplicationTests {
     public  void testCreateBrand(){
         Brand brand = new Brand();
 
-        brand.setNama_brand("Suprime");
+        brand.setNamaBrand("Suprime");
 
         Brand res = brandRepository.save(brand);
 
@@ -36,7 +36,7 @@ class BrandApplicationTests {
 
         Brand res = brandRepository.findById(6);
 
-        assertEquals("Test32", res.getNama_brand().trim());
+        assertEquals("Test32", res.getNamaBrand().trim());
     }
     @Test
     public void testGetBrands() {
@@ -47,15 +47,15 @@ class BrandApplicationTests {
     }
 
     @Test
-    public void testUpdateStudent() {
+    public void testUpdateBrand() {
 
         Brand brand = brandRepository.findById(6);
 
-        brand.setNama_brand("Jessica Mila");
+        brand.setNamaBrand("Tas");
 
         Brand res = brandRepository.save(brand);
 
-        assertEquals("Jessica Mila", res.getNama_brand().trim());
+        assertEquals("Tas", res.getNamaBrand().trim());
     }
 
     @Test

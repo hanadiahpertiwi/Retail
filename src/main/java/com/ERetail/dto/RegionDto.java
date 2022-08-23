@@ -10,7 +10,7 @@ public class RegionDto {
     @NoArgsConstructor
     public static class CreateRegionDto {
 
-        private String nama_region;
+        private String namaRegion;
     }
 
     @Data
@@ -18,7 +18,7 @@ public class RegionDto {
     @NoArgsConstructor
     public static class UpdateRegionDto {
 
-        private Long id;
-        private String nama_region;
+        private Long idRegion;
+        private String namaRegion;
     }
 }
