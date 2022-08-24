@@ -39,8 +39,8 @@ public class KategoriController {
     }
 
     @SneakyThrows(Exception.class)
-    @GetMapping(path = "/regions", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Object> getRegions() {
+    @GetMapping(path = "/kategoris", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<Object> getKategoris() {
 
         log.info("GET http://localhost:8081/api/v1/regions is called...");
 
