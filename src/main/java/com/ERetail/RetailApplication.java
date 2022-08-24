@@ -13,6 +13,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import java.util.ArrayList;
 
+
 @EnableTransactionManagement
 @SpringBootApplication
 public class RetailApplication {
