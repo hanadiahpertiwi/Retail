@@ -9,5 +9,5 @@ import org.springframework.stereotype.Repository;
 public interface SupplierRepository extends JpaRepository<Supplier, Long> {
     Supplier findById(long id);
 
-    Region findByNamaSupplier(String namaSupplier);
+    Supplier findByNamaSupplier(String namaSupplier);
 }

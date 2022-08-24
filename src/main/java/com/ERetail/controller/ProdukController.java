@@ -32,10 +32,10 @@ public class ProdukController {
     }
 
     @SneakyThrows(Exception.class)
-    @GetMapping(path = "/produk/{nama_produk}", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Object> getProduk(@PathVariable(name = "nama_produk") Long id) {
-        log.info("GET http://localhost:8081/api/v1/produk{} is called...", id);
-        return produkService.getProduk(id);
+    @GetMapping(path = "/produk/{namaProduk}", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<Object> getProduk(@PathVariable(name = "namaProduk") String namaProduk) {
+        log.info("GET http://localhost:8081/api/v1/produk{} is called...", namaProduk);
+        return produkService.getProduk(namaProduk);
     }
 
     @SneakyThrows(Exception.class)

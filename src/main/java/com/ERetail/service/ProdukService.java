@@ -26,7 +26,7 @@ import java.util.Optional;
 public class ProdukService {
     @Autowired
     private ProdukRepository produkRepository;
-    
+
     @SneakyThrows(Exception.class)
     public ResponseEntity<Object> createProduk(CreateProdukDto dto){
 
@@ -54,14 +54,14 @@ public class ProdukService {
     }
 
     @SneakyThrows(Exception.class)
-    public ResponseEntity<Object> getProduk(Long id) {
+    public ResponseEntity<Object> getProduk(String namaProduk) {
 
         Map<String, Object> res = new HashMap<>();
 
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
 
-        val produk = produkRepository.findById(id);
+        val produk = produkRepository.findByNamaProduk(namaProduk);
 
         if (Optional.ofNullable(produk).isPresent()) {
             res.put("message", "success");
